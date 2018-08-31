@@ -1,0 +1,5 @@
+<ul class="nav nav-sidebar">
+  {% assign pages_list = site.pages | sort: "order" %}
+  {% assign group = 'docs' %}
+  {% include nav_items.html %}
+</ul>

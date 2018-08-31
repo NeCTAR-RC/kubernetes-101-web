@@ -1,0 +1,28 @@
+# Site settings
+title: Kubernetes 101
+email: support@nectar.org.au
+description: Kubernetes 101
+
+baseurl: "/kubernetes-101"
+url: https://andybotting.github.io/kubernetes-101
+git_address: https://github.com/andybotting/kubernetes-101
+git_edit_address: https://github.com/andybotting/kubernetes-101
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .idea/
+  - .gitignore
+  - README.md
+
+timezone: Australia/Melbourne
+
+defaults:
+  - scope:
+      path: "" # empty string for all files
+    values:
+      layout: docs
