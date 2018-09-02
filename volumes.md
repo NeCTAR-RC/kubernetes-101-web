@@ -21,7 +21,7 @@ Create your NFS Server by running the following `kubectl` command:
 kubectl create -f nfs-server.yaml
 ```
 
-```shell_session
+```console
 service "nfs-server" created
 pod "nfs-server" created
 ```
@@ -32,7 +32,7 @@ Check on the status of your NFS Server Pod by running the following `kubectl` co
 kubectl get pod nfs-server -o wide
 ```
 
-```shell_session
+```console
 NAME         READY     STATUS    RESTARTS   AGE       IP           NODE
 nfs-server   1/1       Running   0          4m        10.244.1.3   summit-student-0-worker-1
 ```
@@ -43,7 +43,7 @@ The NFS Server also has a Service provisioned. We've already seen the benefit of
 kubectl get service nfs-server -o wide
 ```
 
-```shell_session
+```console
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE       SELECTOR
 nfs-server   ClusterIP   10.107.233.255   <none>        2049/TCP,20048/TCP,111/TCP   4m        role=nfs-server
 ```
@@ -54,7 +54,7 @@ Comparing the Manifest file we previously deployed, to an modified version that 
 colordiff -y ~/exercise-1/static-pod-1.yaml static-pod-vol-1.yaml
 ```
 
-```shell_session
+```console
 apiVersion: v1                                                  apiVersion: v1
 kind: Pod                                                       kind: Pod
 metadata:                                                       metadata:
@@ -86,7 +86,7 @@ You may have noticed our NFS Volume has been configured to connect to the NFS Se
 nslookup nfs-server.default.svc.cluster.local
 ```
 
-```shell_session
+```console
 Server:		10.96.0.10
 Address:	10.96.0.10#53
 
@@ -103,7 +103,7 @@ So with that out of the way, lets deploy our new Pods utilizing an NFS Volume. C
 kubectl create -f static-pod-vol-1.yaml -f static-pod-vol-2.yaml
 ```
 
-```shell_session
+```console
 pod "helloworld-static-pod-vol-1" created
 pod "helloworld-static-pod-vol-2" created
 ```
@@ -114,7 +114,7 @@ Check on the status of your Pods by running the following `kubectl` command:
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                          READY     STATUS    RESTARTS   AGE       IP           NODE
 helloworld-static-pod-vol-1   1/1       Running   0          42s       10.244.2.4   summit-student-0-worker-0
 helloworld-static-pod-vol-2   1/1       Running   0          28s       10.244.1.4   summit-student-0-worker-1

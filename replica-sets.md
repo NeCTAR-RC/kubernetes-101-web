@@ -17,7 +17,7 @@ Let's take a look at the `replicaset.yaml` Manifest file.
 cat replicaset.yaml
 ```
 
-```shell_session
+```console
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
@@ -56,7 +56,7 @@ We can see the `Kind` attribute is set to `ReplicaSet`, and there are some new a
 colordiff -yb ~/exercise-3/static-pod-vol-1.yaml replicaset.yaml
 ```
 
-```shell_session
+```console
   apiVersion: v1                                                | apiVersion: apps/v1
   kind: Pod                                                     | kind: ReplicaSet
   metadata:                                                       metadata:
@@ -99,7 +99,7 @@ Create your ReplicaSet by running the following `kubectl` command:
 kubectl apply -f replicaset.yaml
 ```
 
-```shell_session
+```console
 replicaset.apps "helloworld-replicaset" created
 ```
 
@@ -109,7 +109,7 @@ Check on the status of your ReplicaSet by running the following `kubectl` comman
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                    DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-replicaset   2         2         2         2m        helloworld   rackspacetraining/helloworld:1.0   app=helloworld
 ```
@@ -120,7 +120,7 @@ We can see that the desired number of Pods is 2, and after a few seconds, you sh
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                          READY     STATUS    RESTARTS   AGE       IP           NODE
 helloworld-replicaset-955n4   1/1       Running   0          14s       10.244.1.8   summit-student-0-worker-1
 helloworld-replicaset-cnmp5   1/1       Running   0          14s       10.244.2.7   summit-student-0-worker-0
@@ -135,7 +135,7 @@ Now let's see how simple it is to scale up our ReplicaSet. By diffing a modified
 colordiff -y replicaset.yaml replicaset-scale.yaml
 ```
 
-```shell_session
+```console
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:
@@ -174,7 +174,7 @@ Since we are updating our ReplicaSet object, we just need to `kubectl apply` the
 kubectl apply -f replicaset-scale.yaml
 ```
 
-```shell_session
+```console
 replicaset.apps "helloworld-replicaset" configured
 ```
 
@@ -184,7 +184,7 @@ Check on the status of your ReplicaSet by running the following `kubectl` comman
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                    DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-replicaset   5         5         5         3m        helloworld   rackspacetraining/helloworld:1.0   app=helloworld
 ```
@@ -195,7 +195,7 @@ And we can see the number of desired replicas has been updated to 5. Check on th
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                          READY     STATUS    RESTARTS   AGE       IP           NODE
 helloworld-replicaset-5lz9d   1/1       Running   0          31s       10.244.2.8   summit-student-0-worker-0
 helloworld-replicaset-955n4   1/1       Running   0          5m        10.244.1.8   summit-student-0-worker-1
@@ -215,7 +215,7 @@ Scaling down is just as easy. If we update our ReplicaSet object using the origi
 kubectl apply -f replicaset.yaml
 ```
 
-```shell_session
+```console
 replicaset.apps "helloworld-replicaset" configured
 ```
 
@@ -225,7 +225,7 @@ Check on the status of your ReplicaSet by running the following `kubectl` comman
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                    DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-replicaset   2         2         2         4m        helloworld   rackspacetraining/helloworld:1.0   app=helloworld
 ```
@@ -236,7 +236,7 @@ We can see that the desired number of Pods is back to 2, and after a few seconds
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                          READY     STATUS    RESTARTS   AGE       IP           NODE
 helloworld-replicaset-955n4   1/1       Running   0          7m        10.244.1.8   summit-student-0-worker-1
 helloworld-replicaset-cnmp5   1/1       Running   0          7m        10.244.2.7   summit-student-0-worker-0
@@ -251,7 +251,7 @@ Only one way to find out. So let's diff the `replicaset.yaml` and `replicaset-up
 colordiff -y replicaset.yaml replicaset-update.yaml
 ```
 
-```shell_session
+```console
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:
@@ -295,7 +295,7 @@ Let's update our ReplicaSet object one more time, applying the updated Manifest 
 kubectl apply -f replicaset-update.yaml
 ```
 
-```shell_session
+```console
 replicaset.apps "helloworld-replicaset" configured
 ```
 
@@ -305,7 +305,7 @@ Check on the status of your ReplicaSet by running the following `kubectl` comman
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                    DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-replicaset   2         2         2         19m       helloworld   rackspacetraining/helloworld:1.1   app=helloworld
 ```
@@ -320,7 +320,7 @@ Let's dig a little deeper, using `kubectl describe` to see what Container Image 
 kubectl describe pod helloworld | grep -e "^Name:" -e "Image:"
 ```
 
-```shell_session
+```console
 Name:           helloworld-replicaset-955n4
     Image:          rackspacetraining/helloworld:1.0
 Name:           helloworld-replicaset-cnmp5
@@ -333,7 +333,7 @@ And this actually makes sense. If you recall how ReplicaSets work, they count th
 colordiff -y replicaset-update.yaml replicaset-update-scale.yaml
 ```
 
-```shell_session
+```console
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:
@@ -372,7 +372,7 @@ Let's update our ReplicaSet object, changing the number of Replicas to `5`.
 kubectl apply -f replicaset-update-scale.yaml
 ```
 
-```shell_session
+```console
 replicaset.apps "helloworld-replicaset" configured
 ```
 
@@ -382,7 +382,7 @@ Check on the status of your ReplicaSet by running the following `kubectl` comman
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                    DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-replicaset   5         5         5         26m       helloworld   rackspacetraining/helloworld:1.1   app=helloworld
 ```
@@ -393,7 +393,7 @@ Back in your browser, refresh the page several times, but notice a mix of the ol
 kubectl describe pod helloworld | grep -e "^Name:" -e "Image:"
 ```
 
-```shell_session
+```console
   Name:           helloworld-replicaset-955n4
       Image:          rackspacetraining/helloworld:1.0
   Name:           helloworld-replicaset-9d2qx
@@ -412,8 +412,6 @@ So clearly, ReplicaSets are great for scaling, but not so great for rolling out 
 kubectl delete -f replicaset.yaml
 ```
 
-```shell_session
+```console
 replicaset.apps "helloworld-replicaset" deleted
 ```
-
-Up Next: Deployments

@@ -17,7 +17,7 @@ Let's take a look at the `service.yaml` Manifest file.
 cat service.yaml
 ```
 
-```shell_session
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -37,7 +37,7 @@ Looking at the Pods from Exercise 1, they were deployed with a label of `app:hel
 grep metadata -A 3 ~/exercise-1/static-pod-*.yaml
 ```
 
-```shell_session
+```console
 /root/exercise-1/static-pod-1.yaml:metadata:
 /root/exercise-1/static-pod-1.yaml-  name: helloworld-static-pod-1
 /root/exercise-1/static-pod-1.yaml-  labels:
@@ -55,7 +55,7 @@ Create your Service by running the following `kubectl` command:
 kubectl apply -f service.yaml
 ```
 
-```shell_session
+```console
 service "helloworld-service" created
 ```
 
@@ -65,7 +65,7 @@ Check on the status of your Service by running the following kubectl command:
 kubectl get service -o wide
 ```
 
-```shell_session
+```console
 NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE       SELECTOR
 helloworld-service   ClusterIP   10.110.223.163   <none>        80/TCP    18s       app=helloworld
 kubernetes           ClusterIP   10.96.0.1        <none>        443/TCP   46m       <none>
@@ -79,7 +79,7 @@ And if you describe the Service, you can see the two previously deployed Pods ha
 kubectl describe service helloworld-service
 ```
 
-```shell_session
+```console
 Name:              helloworld-service
 Namespace:         default
 Labels:            <none>
@@ -101,7 +101,7 @@ SERVICE_CLUSTER_IP=`kubectl get service -o wide | awk '/helloworld-service/ { pr
 echo $SERVICE_CLUSTER_IP
 ```
 
-```shell_session
+```console
 10.110.223.163
 ```
 
@@ -111,7 +111,7 @@ And then we can test that the Service is load balancing between the Pods. The HT
 http --print=Hh $SERVICE_CLUSTER_IP
 ```
 
-```shell_session
+```console
 GET / HTTP/1.1
 Accept: */*
 Accept-Encoding: gzip, deflate
@@ -139,7 +139,7 @@ http --print=Hh $SERVICE_CLUSTER_IP | grep X-Forwarded-To
 http --print=Hh $SERVICE_CLUSTER_IP | grep X-Forwarded-To
 ```
 
-```shell_session
+```console
 X-Forwarded-To: helloworld-static-pod-2
 X-Forwarded-To: helloworld-static-pod-1
 X-Forwarded-To: helloworld-static-pod-2
@@ -153,7 +153,7 @@ We can see the public IP address of our Master Node by running the following com
 ifdata -pa eth0
 ```
 
-```shell_session
+```console
 23.253.111.163
 ```
 
@@ -163,7 +163,7 @@ We will use this IP address as the External IP address of our Service. The `serv
 colordiff -y service.yaml service-external.yaml
 ```
 
-```shell_session
+```console
 apiVersion: v1                                                  apiVersion: v1
 kind: Service                                                   kind: Service
 metadata:                                                       metadata:
@@ -183,7 +183,7 @@ And since we are updating our Service object, we just need to `kubectl apply` th
 kubectl apply -f service-external.yaml
 ```
 
-```shell_session
+```console
 service "helloworld-service" configured
 ```
 
@@ -193,7 +193,7 @@ Check on the status of your Service by running the following `kubectl` command:
 kubectl get service -o wide
 ```
 
-```shell_session
+```console
 NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP      PORT(S)   AGE       SELECTOR
 helloworld-service   ClusterIP   10.110.223.163   23.253.111.163   80/TCP    2m        app=helloworld
 kubernetes           ClusterIP   10.96.0.1        <none>           443/TCP   49m       <none>
@@ -206,7 +206,7 @@ SERVICE_EXTERNAL_IP=`kubectl get service -o wide | awk '/helloworld-service/ { p
 echo $SERVICE_EXTERNAL_IP
 ```
 
-```shell_session
+```console
 23.253.111.163
 ```
 
@@ -216,7 +216,7 @@ And then we can test that the External IP is working as expected.
 http --print=Hh $SERVICE_EXTERNAL_IP
 ```
 
-```shell_session
+```console
 GET / HTTP/1.1
 Accept: */*
 Accept-Encoding: gzip, deflate
@@ -242,7 +242,7 @@ And since this is an Externl IP address, we can test our web application from a 
 echo "Open URL In Browser: http://$SERVICE_EXTERNAL_IP/"
 ```
 
-```shell_session
+```console
 Open URL In Browser: http://23.253.111.163/
 ```
 
@@ -256,7 +256,7 @@ Before moving on to the next Exercise, let's clean up these Pods, deleting them 
 kubectl delete -f ~/exercise-1/static-pod-1.yaml -f ~/exercise-1/static-pod-2.yaml
 ```
 
-```shell_session
+```console
 pod "helloworld-static-pod-1" deleted
 pod "helloworld-static-pod-2" deleted
 ```
@@ -267,8 +267,6 @@ And after a few seconds, we can confirm that the Pods have indeed been deleted.
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 No resources found.
 ```
-
-Up Next: Volumes

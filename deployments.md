@@ -17,7 +17,7 @@ Let's compare the `replicaset.yaml` Manifest file from Exercise 4 to the `deploy
 colordiff -yb ~/exercise-4/replicaset.yaml deployment.yaml
 ```
 
-```shell_session
+```console
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                              | kind: Deployment
 metadata:                                                       metadata:
@@ -58,7 +58,7 @@ Create your Deployment by running the following `kubectl` command. Make note of 
 kubectl apply -f deployment.yaml --record
 ```
 
-```shell_session
+```console
 deployment.apps "helloworld-deployment" created
 ```
 
@@ -68,7 +68,7 @@ Check on the status of your Deployment by running the following `kubectl` comman
 kubectl get deployment -o wide
 ```
 
-```shell_session
+```console
 NAME                    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-deployment   2         2         2            2           38s       helloworld   rackspacetraining/helloworld:1.0   app=helloworld
 ```
@@ -81,7 +81,7 @@ Check on the status of your ReplicaSets by running the following `kubectl` comma
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                               DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-deployment-576c94d5f7   2         2         2         1m        helloworld   rackspacetraining/helloworld:1.0   app=helloworld,pod-template-hash=1327508193
 ```
@@ -92,7 +92,7 @@ And check on the status of your Pods by running the following `kubectl` command:
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                                     READY     STATUS    RESTARTS   AGE       IP            NODE
 helloworld-deployment-576c94d5f7-b5sdx   1/1       Running   0          1m        10.244.2.11   summit-student-0-worker-0
 helloworld-deployment-576c94d5f7-r4fwf   1/1       Running   0          1m        10.244.1.12   summit-student-0-worker-1
@@ -105,7 +105,7 @@ Let's try scaling up our Deployment to 10 replicas.
 colordiff -y deployment.yaml deployment-scale.yaml
 ```
 
-```shell_session
+```console
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: Deployment                                                kind: Deployment
 metadata:                                                       metadata:
@@ -144,7 +144,7 @@ Since we are updating our Deployment object, we just need to `kubectl apply` the
 kubectl apply -f deployment-scale.yaml --record
 ```
 
-```shell_session
+```console
 deployment.apps "helloworld-deployment" configured
 ```
 
@@ -154,7 +154,7 @@ Check on the status of your Deployment by running the following kubectl command:
 kubectl get deployment -o wide
 ```
 
-```shell_session
+```console
 NAME                    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-deployment   10        10        10           10          4m        helloworld   rackspacetraining/helloworld:1.0   app=helloworld
 ```
@@ -165,7 +165,7 @@ The Deployment has successfully been scaled up to 10 replicas. Digging in, we ca
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                               DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-deployment-576c94d5f7   10        10        10        5m        helloworld   rackspacetraining/helloworld:1.0   app=helloworld,pod-template-hash=1327508193
 ```
@@ -176,7 +176,7 @@ And it also shows the desired number of replicas is now 10. And just to confirm,
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                                     READY     STATUS    RESTARTS   AGE       IP            NODE
 helloworld-deployment-576c94d5f7-6m7lb   1/1       Running   0          1m        10.244.1.15   summit-student-0-worker-1
 helloworld-deployment-576c94d5f7-99x26   1/1       Running   0          1m        10.244.1.16   summit-student-0-worker-1
@@ -201,7 +201,7 @@ So let's try rolling out an update using our Deployment. Diffing a modified Mani
 colordiff -y deployment-scale.yaml deployment-update.yaml
 ```
 
-```shell_session
+```console
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: Deployment                                                kind: Deployment
 metadata:                                                       metadata:
@@ -240,7 +240,7 @@ Since we are updating our Deployment object, we just need to `kubectl apply` the
 kubectl apply -f deployment-update.yaml --record
 ```
 
-```shell_session
+```console
 deployment.apps "helloworld-deployment" configured
 ```
 
@@ -250,7 +250,7 @@ Check on the status of your Deployment by running the following `kubectl` comman
 kubectl get deployment -o wide
 ```
 
-```shell_session
+```console
 NAME                    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-deployment   10        10        10           10          8m        helloworld   rackspacetraining/helloworld:1.1   app=helloworld
 ```
@@ -263,7 +263,7 @@ Check on the status of your ReplicaSet by running the following `kubectl` comman
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                               DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-deployment-576c94d5f7   0         0         0         8m        helloworld   rackspacetraining/helloworld:1.0   app=helloworld,pod-template-hash=1327508193
 helloworld-deployment-5f48d668fb   10        10        10        30s       helloworld   rackspacetraining/helloworld:1.1   app=helloworld,pod-template-hash=1904822496
@@ -279,7 +279,7 @@ Check on the status of your Pods by running the following `kubectl` command:
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                                     READY     STATUS    RESTARTS   AGE       IP            NODE
 helloworld-deployment-5f48d668fb-5z7zt   1/1       Running   0          6m        10.244.2.19   summit-student-0-worker-0
 helloworld-deployment-5f48d668fb-kp5cs   1/1       Running   0          6m        10.244.2.17   summit-student-0-worker-0
@@ -304,7 +304,7 @@ The `kubectl rollout history` command shows a history of changes that have been 
 kubectl rollout history deployment helloworld-deployment
 ```
 
-```shell_session
+```console
 deployments "helloworld-deployment"
 REVISION  CHANGE-CAUSE
 1         kubectl apply --filename=deployment-scale.yaml --record=true
@@ -317,7 +317,7 @@ To rollback your Deployment, run the following `kubectl` command.
 kubectl rollout undo deployment helloworld-deployment
 ```
 
-```shell_session
+```console
 deployment.apps "helloworld-deployment"
 ```
 
@@ -336,7 +336,7 @@ Confirm the old ReplicaSet was scaled back up, and the new ReplicaSet was scaled
 kubectl get replicasets -o wide
 ```
 
-```shell_session
+```console
 NAME                               DESIRED   CURRENT   READY     AGE       CONTAINERS   IMAGES                             SELECTOR
 helloworld-deployment-576c94d5f7   10        10        10        4m        helloworld   rackspacetraining/helloworld:1.0   app=helloworld,pod-template-hash=1327508193
 helloworld-deployment-5f48d668fb   0         0         0         3m        helloworld   rackspacetraining/helloworld:1.1   app=helloworld,pod-template-hash=1904822496
@@ -348,7 +348,7 @@ And confirm the Pods are from the old ReplicaSet.
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                                     READY     STATUS    RESTARTS   AGE       IP            NODE
 helloworld-deployment-576c94d5f7-295z5   1/1       Running   0          2m        10.244.2.34   summit-student-0-worker-0
 helloworld-deployment-576c94d5f7-2jwcw   1/1       Running   0          2m        10.244.1.39   summit-student-0-worker-1

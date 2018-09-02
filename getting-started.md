@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-permalink: /
+permalink: /getting-started
 icon: terminal
 order: 00
 ---
@@ -16,7 +16,7 @@ Initate an SSH connection to your Master Node, using the root user and password 
 ssh root@<your-master-node-ip-address>
 ```
 
-```shell_session
+```console
 The authenticity of host '23.253.111.163 (23.253.111.163)' can't be established.
 ECDSA key fingerprint is SHA256:V9uiWfD7AiO3OzmYqbbu2g/pmrc9FLzgxGOhInZjTYg.
 Are you sure you want to continue connecting (yes/no)?
@@ -28,14 +28,14 @@ Type `yes`, and press enter to continue.
 yes
 ```
 
-```shell_session
+```console
 Warning: Permanently added '23.253.111.163' (ECDSA) to the list of known hosts.
 root@23.253.111.163's password: 
 ```
 
 Type in your password, then press `enter` to continue.
 
-```shell_session
+```console
 Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-119-generic x86_64)
 
 root@summit-student-0-master:~#
@@ -60,7 +60,7 @@ You can see your Nodes by running the following `kubectl` command:
 kubectl get nodes
 ```
 
-```shell_session
+```console
 NAME                        STATUS    ROLES     AGE       VERSION
 summit-student-0-master     Ready     master    4m        v1.10.2
 summit-student-0-worker-0   Ready     <none>    3m        v1.10.2
@@ -73,7 +73,7 @@ And you can see, there are 3 Nodes that are part of your Cluster. One Master Nod
 kubectl get nodes -o wide
 ```
 
-```shell_session
+```console
 NAME                        STATUS    ROLES     AGE       VERSION   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
 summit-student-0-master     Ready     master    4m        v1.10.2   <none>        Ubuntu 16.04.4 LTS   4.4.0-119-generic   docker://1.13.1
 summit-student-0-worker-0   Ready     <none>    3m        v1.10.2   <none>        Ubuntu 16.04.4 LTS   4.4.0-119-generic   docker://1.13.1
@@ -88,7 +88,7 @@ kubectl describe node summit-student-0-master
 
 There is too much to display here, so this is just a small sample of the output.
 
-```shell_session
+```console
 Name:               summit-student-0-master
 Roles:              master
 Labels:             beta.kubernetes.io/arch=amd64
@@ -114,11 +114,9 @@ But there is one more command that helps to get a birds eye view of everthing th
 kubectl get all -o wide
 ```
 
-```shell_session
+```console
 NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE       SELECTOR
 service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   22h       <none>
 ```
 
 And as you can see, there is one Object already present, a Service Object. We will encounter Services in a future exercise.
-
-Up Next: Static Pods

@@ -17,7 +17,7 @@ In here are some files we'll be using for this exercise. These files are known a
 cat static-pod-1.yaml
 ```
 
-```shell_session
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -47,7 +47,7 @@ Create your first Pod by running the following `kubectl` command:
 kubectl create -f static-pod-1.yaml
 ```
 
-```shell_session
+```console
 pod "helloworld-static-pod-1" created
 ```
 
@@ -57,7 +57,7 @@ Check on the status of your Pod by running the following `kubectl` command:
 kubectl get pods
 ```
 
-```shell_session
+```console
 NAME                      READY     STATUS    RESTARTS   AGE
 helloworld-static-pod-1   1/1       Running   0          42s
 ```
@@ -70,7 +70,7 @@ As mentioned in the Getting Started section, we can get a bit more information a
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                      READY     STATUS    RESTARTS   AGE       IP           NODE
 helloworld-static-pod-1   1/1       Running   0          1m        10.244.1.2   summit-student-0-worker-1
 ```
@@ -81,7 +81,7 @@ And even more information by running `kubectl describe` on the Pod.
 kubectl describe pod helloworld-static-pod-1
 ```
 
-```shell_session
+```console
 Name:         helloworld-static-pod-1
 Namespace:    default
 Node:         summit-student-0-worker-1/23.253.111.235
@@ -102,7 +102,7 @@ STATIC_POD_1_IP=`kubectl get pods -o wide | awk '/helloworld-static-pod-1/ { pri
 echo $STATIC_POD_1_IP
 ```
 
-```shell_session
+```console
 10.244.1.2
 ```
 
@@ -112,7 +112,7 @@ Since our HelloWorld application is a web application, we should be able to acce
 http --body $STATIC_POD_1_IP | head -n 25
 ```
 
-```shell_session
+```html
 <!DOCTYPE html>
 <!--
 
@@ -150,7 +150,7 @@ So, let's deploy another Pod of our application. You can see the only difference
 colordiff -y static-pod-1.yaml static-pod-2.yaml
 ```
 
-```shell_session
+```console
 apiVersion: v1                                                  apiVersion: v1
 kind: Pod                                                       kind: Pod
 metadata:                                                       metadata:
@@ -172,7 +172,7 @@ Create your second Pod by running the following `kubectl` command:
 kubectl create -f static-pod-2.yaml
 ```
 
-```shell_session
+```console
 pod "helloworld-static-pod-2" created
 ```
 
@@ -182,7 +182,7 @@ Check on the status of your Pods by running the following `kubectl` command:
 kubectl get pods -o wide
 ```
 
-```shell_session
+```console
 NAME                      READY     STATUS    RESTARTS   AGE       IP           NODE
 helloworld-static-pod-1   1/1       Running   0          12m       10.244.1.2   summit-student-0-worker-1
 helloworld-static-pod-2   1/1       Running   0          2m        10.244.2.2   summit-student-0-worker-0
@@ -197,7 +197,7 @@ STATIC_POD_2_IP=`kubectl get pods -o wide | awk '/helloworld-static-pod-2/ { pri
 echo $STATIC_POD_2_IP
 ```
 
-```shell_session
+```console
 10.244.2.2
 ```
 
@@ -207,7 +207,7 @@ And just as before, confirm we can access the second Pod over HTTP.
 http --body $STATIC_POD_2_IP | head -n 25
 ```
 
-```shell_session
+```console
 <!DOCTYPE html>
 <!--
 
@@ -238,5 +238,3 @@ http --body $STATIC_POD_2_IP | head -n 25
 And it works...great job!
 
 But now we have a new problem. How do we distribute requests between these two Pods?
-
-Up Next: Services
