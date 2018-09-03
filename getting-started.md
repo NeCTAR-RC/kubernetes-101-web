@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-permalink: /getting-started
+permalink: /
 icon: terminal
 order: 00
 ---
