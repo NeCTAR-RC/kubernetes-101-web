@@ -17,7 +17,7 @@ Let's take a look at the `replicaset.yaml` Manifest file.
 cat replicaset.yaml
 ```
 
-```console
+```yaml
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
@@ -56,7 +56,7 @@ We can see the `Kind` attribute is set to `ReplicaSet`, and there are some new a
 colordiff -yb ~/lab/exercise-3/static-pod-vol-1.yaml replicaset.yaml
 ```
 
-```console
+```yaml
   apiVersion: v1                                                | apiVersion: apps/v1
   kind: Pod                                                     | kind: ReplicaSet
   metadata:                                                       metadata:
@@ -135,7 +135,7 @@ Now let's see how simple it is to scale up our ReplicaSet. By diffing a modified
 colordiff -y replicaset.yaml replicaset-scale.yaml
 ```
 
-```console
+```yaml
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:
@@ -251,7 +251,7 @@ Only one way to find out. So let's diff the `replicaset.yaml` and `replicaset-up
 colordiff -y replicaset.yaml replicaset-update.yaml
 ```
 
-```console
+```yaml
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:
@@ -333,7 +333,7 @@ And this actually makes sense. If you recall how ReplicaSets work, they count th
 colordiff -y replicaset-update.yaml replicaset-update-scale.yaml
 ```
 
-```console
+```yaml
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:

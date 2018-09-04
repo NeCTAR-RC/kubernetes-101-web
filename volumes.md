@@ -54,7 +54,7 @@ Comparing the Manifest file we previously deployed, to an modified version that 
 colordiff -y ~/lab/exercise-1/static-pod-1.yaml static-pod-vol-1.yaml
 ```
 
-```console
+```yaml
 apiVersion: v1                                                  apiVersion: v1
 kind: Pod                                                       kind: Pod
 metadata:                                                       metadata:

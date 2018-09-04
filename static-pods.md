@@ -150,21 +150,21 @@ So, let's deploy another Pod of our application. You can see the only difference
 colordiff -y static-pod-1.yaml static-pod-2.yaml
 ```
 
-```console
+<pre>
 apiVersion: v1                                                  apiVersion: v1
 kind: Pod                                                       kind: Pod
 metadata:                                                       metadata:
-  name: helloworld-static-pod-1                               |   name: helloworld-static-pod-2
+<span style="color:teal;">  name: helloworld-static-pod-1                               |   name: helloworld-static-pod-2</span>
   labels:                                                         labels:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
   containers:                                                     containers:
-    - name: helloworld                                              - name: helloworld
-      image: rackspacetraining/helloworld:1.0                         image: rackspacetraining/helloworld:1.0
-      ports:                                                          ports:
-        - name: web                                                     - name: web
-          containerPort: 80                                               containerPort: 80
-```
+  - name: helloworld                                              - name: helloworld
+    image: rackspacetraining/helloworld:1.0                         image: rackspacetraining/helloworld:1.0
+    ports:                                                          ports:
+    - name: web                                                     - name: web
+      containerPort: 80                                               containerPort: 80
+</pre>
 
 Create your second Pod by running the following `kubectl` command:
 
@@ -207,7 +207,7 @@ And just as before, confirm we can access the second Pod over HTTP.
 http --body $STATIC_POD_2_IP | head -n 25
 ```
 
-```console
+```html
 <!DOCTYPE html>
 <!--
 

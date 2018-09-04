@@ -23,8 +23,8 @@ body {
   padding-top: $navbar-height;
 }
 
-.navbar-brand{
-  img{
+.navbar-brand {
+  img {
     margin: -$navbar-padding-vertical 0;
     height: $navbar-height;
     padding: 5px 0;
@@ -84,4 +84,9 @@ body {
 .nav-sidebar > .active > a:focus {
   color: #fff;
   background-color: #428bca;
+}
+
+pre {
+  background-color: #404040;
+  color: #ccc;
 }

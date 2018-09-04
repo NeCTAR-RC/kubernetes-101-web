@@ -17,7 +17,7 @@ Let's compare the `replicaset.yaml` Manifest file from Exercise 4 to the `deploy
 colordiff -yb ~/lab/exercise-4/replicaset.yaml deployment.yaml
 ```
 
-```console
+```yaml
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                              | kind: Deployment
 metadata:                                                       metadata:
@@ -105,7 +105,7 @@ Let's try scaling up our Deployment to 10 replicas.
 colordiff -y deployment.yaml deployment-scale.yaml
 ```
 
-```console
+```yaml
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: Deployment                                                kind: Deployment
 metadata:                                                       metadata:
@@ -201,7 +201,7 @@ So let's try rolling out an update using our Deployment. Diffing a modified Mani
 colordiff -y deployment-scale.yaml deployment-update.yaml
 ```
 
-```console
+```yaml
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: Deployment                                                kind: Deployment
 metadata:                                                       metadata:

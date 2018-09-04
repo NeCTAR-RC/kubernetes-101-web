@@ -163,7 +163,7 @@ We will use this IP address as the External IP address of our Service. The `serv
 colordiff -y service.yaml service-external.yaml
 ```
 
-```console
+```yaml
 apiVersion: v1                                                  apiVersion: v1
 kind: Service                                                   kind: Service
 metadata:                                                       metadata:
