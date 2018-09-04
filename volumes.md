@@ -45,7 +45,7 @@ kubectl get service nfs-server -o wide
 
 ```console
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE       SELECTOR
-nfs-server   ClusterIP   10.107.233.255   <none>        2049/TCP,20048/TCP,111/TCP   4m        role=nfs-server
+nfs-server   ClusterIP   10.107.233.255   <none>        2049/TCP,20048/TCP,111/TCP   4m        app=nfs-server
 ```
 
 Comparing the Manifest file we previously deployed, to an modified version that includes a `Volume`, we can see some minor differences.
@@ -63,16 +63,16 @@ metadata:                                                       metadata:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
   containers:                                                     containers:
-<span style="color:teal;">  - name: helloworld                                          |   - name: hellworld</span>
-    image: rackspacetraining/helloworld:1.0                         image: rackspacetraining/helloworld:1.0
-    ports:                                                          ports:
-    - name: web                                                     - name: web
-      containerPort: 80                                               containerPort: 80
-<span style="color:green;">                                                              &gt;     volumeMounts:</span>
-<span style="color:green;">                                                              &gt;       - name: my-nfs</span>
-<span style="color:green;">                                                              &gt;         mountPath: &quot;/mnt/images&quot;</span>
+  - name: helloworld                                                - name: helloworld
+    image: rackspacetraining/helloworld:1.0                           image: rackspacetraining/helloworld:1.0
+    ports:                                                            ports:
+    - name: web                                                       - name: web
+      containerPort: 80                                                 containerPort: 80
+<span style="color:green;">                                                              &gt;       volumeMounts:</span>
+<span style="color:green;">                                                              &gt;         - name: nfs</span>
+<span style="color:green;">                                                              &gt;           mountPath: &quot;/mnt/images&quot;</span>
 <span style="color:green;">                                                              &gt;   volumes:</span>
-<span style="color:green;">                                                              &gt;     - name: my-nfs</span>
+<span style="color:green;">                                                              &gt;     - name: nfs</span>
 <span style="color:green;">                                                              &gt;       nfs:</span>
 <span style="color:green;">                                                              &gt;         server: nfs-server.default.svc.cluster.local</span>
 <span style="color:green;">                                                              &gt;         path: &quot;/exports&quot;</span>
