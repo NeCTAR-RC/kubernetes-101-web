@@ -8,7 +8,7 @@ order: 02
 Change into the directory for Exercise 2.
 
 ```
-cd ~/exercise-2/
+cd ~/lab/exercise-2/
 ```
 
 Let's take a look at the `service.yaml` Manifest file.
@@ -34,7 +34,7 @@ You'll notice the `Kind` attribute is set to `Service`. A Service exposes a set 
 Looking at the Pods from Exercise 1, they were deployed with a label of `app:helloworld`. The Service's `Selector` looks for Pods with a matching Label, and adds them to the pool.
 
 ```
-grep metadata -A 3 ~/exercise-1/static-pod-*.yaml
+grep metadata -A 3 ~/lab/exercise-1/static-pod-*.yaml
 ```
 
 ```console
@@ -253,7 +253,7 @@ Now click "Hello World", and choose an image to upload as the background image (
 Before moving on to the next Exercise, let's clean up these Pods, deleting them with the following `kubectl delete` command:
 
 ```
-kubectl delete -f ~/exercise-1/static-pod-1.yaml -f ~/exercise-1/static-pod-2.yaml
+kubectl delete -f ~/lab/exercise-1/static-pod-1.yaml -f ~/lab/exercise-1/static-pod-2.yaml
 ```
 
 ```console

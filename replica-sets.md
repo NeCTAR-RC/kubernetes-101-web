@@ -8,7 +8,7 @@ order: 04
 Change into the directory for Exercise 4.
 
 ```
-cd ~/exercise-4/
+cd ~/lab/exercise-4/
 ```
 
 Let's take a look at the `replicaset.yaml` Manifest file.
@@ -53,7 +53,7 @@ spec:
 We can see the `Kind` attribute is set to `ReplicaSet`, and there are some new attributes, and some that we've seen before. To put the differences in a better context, let's diff the Manifest for one of the Pods we deployed in Exercise 3, and this `replicaset.yaml` Manifest.
 
 ```
-colordiff -yb ~/exercise-3/static-pod-vol-1.yaml replicaset.yaml
+colordiff -yb ~/lab/exercise-3/static-pod-vol-1.yaml replicaset.yaml
 ```
 
 ```console

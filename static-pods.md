@@ -8,7 +8,7 @@ order: 01
 Change into the directory for Exercise 1.
 
 ```
-cd ~/exercise-1/
+cd ~/lab/exercise-1/
 ```
 
 In here are some files we'll be using for this exercise. These files are known as Manifest files, and they describe one or more resources to deploy within Kubernetes. Let's take a look at our first Manifest file.

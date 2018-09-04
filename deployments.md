@@ -8,13 +8,13 @@ order: 05
 Change into the directory for Exercise 5.
 
 ```
-cd ~/exercise-5/
+cd ~/lab/exercise-5/
 ```
 
 Let's compare the `replicaset.yaml` Manifest file from Exercise 4 to the `deployment.yaml` Manifest file.
 
 ```
-colordiff -yb ~/exercise-4/replicaset.yaml deployment.yaml
+colordiff -yb ~/lab/exercise-4/replicaset.yaml deployment.yaml
 ```
 
 ```console

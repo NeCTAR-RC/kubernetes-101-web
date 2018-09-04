@@ -8,7 +8,7 @@ order: 03
 Change into the directory for Exercise 3.
 
 ```
-cd ~/exercise-3/
+cd ~/lab/exercise-3/
 ```
 
 When we uploaded a background image to our web application, that file was stored within the Container of one of the two Pods. This presents two problems. First, Containers are considered stateless. If a Pod needed to be reschedule because of a failure, all the data saved within the Container would be lost. So we need a way to persist certain data within a Container. Second, our web application wasn't able to consistently serve requests for the background image, because not every Container actually contained the image.
@@ -51,7 +51,7 @@ nfs-server   ClusterIP   10.107.233.255   <none>        2049/TCP,20048/TCP,111/T
 Comparing the Manifest file we previously deployed, to an modified version that includes a `Volume`, we can see some minor differences.
 
 ```
-colordiff -y ~/exercise-1/static-pod-1.yaml static-pod-vol-1.yaml
+colordiff -y ~/lab/exercise-1/static-pod-1.yaml static-pod-vol-1.yaml
 ```
 
 ```console
