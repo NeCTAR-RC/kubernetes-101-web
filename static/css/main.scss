@@ -90,3 +90,12 @@ pre {
   background-color: #404040;
   color: #ccc;
 }
+
+/* Force consistent style for console code */
+.language-console {
+  .highlight {
+    pre, code, span {
+      color: #ccc;
+    }
+  }
+}
