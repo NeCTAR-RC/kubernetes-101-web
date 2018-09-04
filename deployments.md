@@ -94,9 +94,9 @@ kubectl get pods -o wide
 
 ```console
 NAME                                     READY     STATUS    RESTARTS   AGE       IP            NODE
-helloworld-deployment-576c94d5f7-b5sdx   1/1       Running   0          1m        10.244.2.11   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-r4fwf   1/1       Running   0          1m        10.244.1.12   summit-student-0-worker-1
-nfs-server                               1/1       Running   0          1h        10.244.1.3    summit-student-0-worker-1
+helloworld-deployment-576c94d5f7-b5sdx   1/1       Running   0          1m        10.244.2.11   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-r4fwf   1/1       Running   0          1m        10.244.1.12   lab-kubernetes-0-worker-1
+nfs-server                               1/1       Running   0          1h        10.244.1.3    lab-kubernetes-0-worker-1
 ```
 
 Let's try scaling up our Deployment to 10 replicas.
@@ -178,17 +178,17 @@ kubectl get pods -o wide
 
 ```console
 NAME                                     READY     STATUS    RESTARTS   AGE       IP            NODE
-helloworld-deployment-576c94d5f7-6m7lb   1/1       Running   0          1m        10.244.1.15   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-99x26   1/1       Running   0          1m        10.244.1.16   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-b5sdx   1/1       Running   0          5m        10.244.2.11   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-fkz4r   1/1       Running   0          1m        10.244.2.13   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-l6w9j   1/1       Running   0          1m        10.244.1.14   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-lx2sn   1/1       Running   0          1m        10.244.2.14   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-nj2sc   1/1       Running   0          1m        10.244.2.15   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-qqvnc   1/1       Running   0          1m        10.244.1.13   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-r4fwf   1/1       Running   0          5m        10.244.1.12   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-zd5c5   1/1       Running   0          1m        10.244.2.12   summit-student-0-worker-0
-nfs-server                               1/1       Running   0          1h        10.244.1.3    summit-student-0-worker-1
+helloworld-deployment-576c94d5f7-6m7lb   1/1       Running   0          1m        10.244.1.15   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-99x26   1/1       Running   0          1m        10.244.1.16   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-b5sdx   1/1       Running   0          5m        10.244.2.11   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-fkz4r   1/1       Running   0          1m        10.244.2.13   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-l6w9j   1/1       Running   0          1m        10.244.1.14   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-lx2sn   1/1       Running   0          1m        10.244.2.14   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-nj2sc   1/1       Running   0          1m        10.244.2.15   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-qqvnc   1/1       Running   0          1m        10.244.1.13   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-r4fwf   1/1       Running   0          5m        10.244.1.12   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-zd5c5   1/1       Running   0          1m        10.244.2.12   lab-kubernetes-0-worker-0
+nfs-server                               1/1       Running   0          1h        10.244.1.3    lab-kubernetes-0-worker-1
 ```
 
 And there are all 10 Pods.
@@ -281,17 +281,17 @@ kubectl get pods -o wide
 
 ```console
 NAME                                     READY     STATUS    RESTARTS   AGE       IP            NODE
-helloworld-deployment-5f48d668fb-5z7zt   1/1       Running   0          6m        10.244.2.19   summit-student-0-worker-0
-helloworld-deployment-5f48d668fb-kp5cs   1/1       Running   0          6m        10.244.2.17   summit-student-0-worker-0
-helloworld-deployment-5f48d668fb-lld4r   1/1       Running   0          6m        10.244.1.20   summit-student-0-worker-1
-helloworld-deployment-5f48d668fb-lsjdd   1/1       Running   0          6m        10.244.2.16   summit-student-0-worker-0
-helloworld-deployment-5f48d668fb-m4ks2   1/1       Running   0          6m        10.244.1.21   summit-student-0-worker-1
-helloworld-deployment-5f48d668fb-sq8xh   1/1       Running   0          6m        10.244.1.17   summit-student-0-worker-1
-helloworld-deployment-5f48d668fb-wxzj2   1/1       Running   0          6m        10.244.2.20   summit-student-0-worker-0
-helloworld-deployment-5f48d668fb-x6b9k   1/1       Running   0          6m        10.244.1.19   summit-student-0-worker-1
-helloworld-deployment-5f48d668fb-xfq6l   1/1       Running   0          6m        10.244.1.18   summit-student-0-worker-1
-helloworld-deployment-5f48d668fb-xpvg7   1/1       Running   0          6m        10.244.2.18   summit-student-0-worker-0
-nfs-server                               1/1       Running   0          1h        10.244.1.3    summit-student-0-worker-1
+helloworld-deployment-5f48d668fb-5z7zt   1/1       Running   0          6m        10.244.2.19   lab-kubernetes-0-worker-0
+helloworld-deployment-5f48d668fb-kp5cs   1/1       Running   0          6m        10.244.2.17   lab-kubernetes-0-worker-0
+helloworld-deployment-5f48d668fb-lld4r   1/1       Running   0          6m        10.244.1.20   lab-kubernetes-0-worker-1
+helloworld-deployment-5f48d668fb-lsjdd   1/1       Running   0          6m        10.244.2.16   lab-kubernetes-0-worker-0
+helloworld-deployment-5f48d668fb-m4ks2   1/1       Running   0          6m        10.244.1.21   lab-kubernetes-0-worker-1
+helloworld-deployment-5f48d668fb-sq8xh   1/1       Running   0          6m        10.244.1.17   lab-kubernetes-0-worker-1
+helloworld-deployment-5f48d668fb-wxzj2   1/1       Running   0          6m        10.244.2.20   lab-kubernetes-0-worker-0
+helloworld-deployment-5f48d668fb-x6b9k   1/1       Running   0          6m        10.244.1.19   lab-kubernetes-0-worker-1
+helloworld-deployment-5f48d668fb-xfq6l   1/1       Running   0          6m        10.244.1.18   lab-kubernetes-0-worker-1
+helloworld-deployment-5f48d668fb-xpvg7   1/1       Running   0          6m        10.244.2.18   lab-kubernetes-0-worker-0
+nfs-server                               1/1       Running   0          1h        10.244.1.3    lab-kubernetes-0-worker-1
 ```
 
 Back in your browser, refresh the page several times, and notice the new Container Image being used.
@@ -350,17 +350,17 @@ kubectl get pods -o wide
 
 ```console
 NAME                                     READY     STATUS    RESTARTS   AGE       IP            NODE
-helloworld-deployment-576c94d5f7-295z5   1/1       Running   0          2m        10.244.2.34   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-2jwcw   1/1       Running   0          2m        10.244.1.39   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-45t8l   1/1       Running   0          2m        10.244.1.38   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-4fzbp   1/1       Running   0          2m        10.244.1.34   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-52brn   1/1       Running   0          2m        10.244.2.33   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-cg5qv   1/1       Running   0          2m        10.244.2.35   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-fvpxw   1/1       Running   0          2m        10.244.2.36   summit-student-0-worker-0
-helloworld-deployment-576c94d5f7-r5fp9   1/1       Running   0          2m        10.244.1.36   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-xvqc9   1/1       Running   0          2m        10.244.1.35   summit-student-0-worker-1
-helloworld-deployment-576c94d5f7-zlx8h   1/1       Running   0          2m        10.244.1.37   summit-student-0-worker-1
-nfs-server                               1/1       Running   0          1h        10.244.1.3    summit-student-0-worker-1
+helloworld-deployment-576c94d5f7-295z5   1/1       Running   0          2m        10.244.2.34   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-2jwcw   1/1       Running   0          2m        10.244.1.39   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-45t8l   1/1       Running   0          2m        10.244.1.38   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-4fzbp   1/1       Running   0          2m        10.244.1.34   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-52brn   1/1       Running   0          2m        10.244.2.33   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-cg5qv   1/1       Running   0          2m        10.244.2.35   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-fvpxw   1/1       Running   0          2m        10.244.2.36   lab-kubernetes-0-worker-0
+helloworld-deployment-576c94d5f7-r5fp9   1/1       Running   0          2m        10.244.1.36   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-xvqc9   1/1       Running   0          2m        10.244.1.35   lab-kubernetes-0-worker-1
+helloworld-deployment-576c94d5f7-zlx8h   1/1       Running   0          2m        10.244.1.37   lab-kubernetes-0-worker-1
+nfs-server                               1/1       Running   0          1h        10.244.1.3    lab-kubernetes-0-worker-1
 ```
 
 Back in your browser, refresh the page several times, and confirm the rollback was successful.

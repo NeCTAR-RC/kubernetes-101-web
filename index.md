@@ -38,7 +38,7 @@ Type in your password, then press `enter` to continue.
 ```console
 Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-119-generic x86_64)
 
-root@summit-student-0-master:~#
+root@lab-kubernetes-0-master:~#
 ```
 
 ### Windows PuTTY
@@ -62,9 +62,9 @@ kubectl get nodes
 
 ```console
 NAME                        STATUS    ROLES     AGE       VERSION
-summit-student-0-master     Ready     master    4m        v1.10.2
-summit-student-0-worker-0   Ready     <none>    3m        v1.10.2
-summit-student-0-worker-1   Ready     <none>    3m        v1.10.2
+lab-kubernetes-0-master     Ready     master    4m        v1.10.2
+lab-kubernetes-0-worker-0   Ready     <none>    3m        v1.10.2
+lab-kubernetes-0-worker-1   Ready     <none>    3m        v1.10.2
 ```
 
 And you can see, there are 3 Nodes that are part of your Cluster. One Master Node, and two Worker Nodes. Additional information about the Nodes can be dispalyed by modifying the command as such:
@@ -75,25 +75,25 @@ kubectl get nodes -o wide
 
 ```console
 NAME                        STATUS    ROLES     AGE       VERSION   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-summit-student-0-master     Ready     master    4m        v1.10.2   <none>        Ubuntu 16.04.4 LTS   4.4.0-119-generic   docker://1.13.1
-summit-student-0-worker-0   Ready     <none>    3m        v1.10.2   <none>        Ubuntu 16.04.4 LTS   4.4.0-119-generic   docker://1.13.1
-summit-student-0-worker-1   Ready     <none>    3m        v1.10.2   <none>        Ubuntu 16.04.4 LTS   4.4.0-119-generic   docker://1.13.1
+lab-kubernetes-0-master     Ready     master    4m        v1.10.2   <none>        Ubuntu 16.04.4 LTS   4.4.0-119-generic   docker://1.13.1
+lab-kubernetes-0-worker-0   Ready     <none>    3m        v1.10.2   <none>        Ubuntu 16.04.4 LTS   4.4.0-119-generic   docker://1.13.1
+lab-kubernetes-0-worker-1   Ready     <none>    3m        v1.10.2   <none>        Ubuntu 16.04.4 LTS   4.4.0-119-generic   docker://1.13.1
 ```
 
 As the command implies, the output is wider, giving room for some additional bits of information. But you can get even more information about one of your nodes by running the following command:
 
 ```
-kubectl describe node summit-student-0-master
+kubectl describe node lab-kubernetes-0-master
 ```
 
 There is too much to display here, so this is just a small sample of the output.
 
 ```console
-Name:               summit-student-0-master
+Name:               lab-kubernetes-0-master
 Roles:              master
 Labels:             beta.kubernetes.io/arch=amd64
                     beta.kubernetes.io/os=linux
-                    kubernetes.io/hostname=summit-student-0-master
+                    kubernetes.io/hostname=lab-kubernetes-0-master
                     node-role.kubernetes.io/master=
 Annotations:        flannel.alpha.coreos.com/backend-data={"VtepMAC":"d2:66:06:29:2e:7a"}
                     flannel.alpha.coreos.com/backend-type=vxlan

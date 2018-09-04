@@ -34,7 +34,7 @@ kubectl get pod nfs-server -o wide
 
 ```console
 NAME         READY     STATUS    RESTARTS   AGE       IP           NODE
-nfs-server   1/1       Running   0          4m        10.244.1.3   summit-student-0-worker-1
+nfs-server   1/1       Running   0          4m        10.244.1.3   lab-kubernetes-0-worker-1
 ```
 
 The NFS Server also has a Service provisioned. We've already seen the benefit of using a Service, which can provide load balancing capabilites, but Services also provides a well known DNS name for the Service they expose. We will see this in use shortly.
@@ -116,9 +116,9 @@ kubectl get pods -o wide
 
 ```console
 NAME                          READY     STATUS    RESTARTS   AGE       IP           NODE
-helloworld-static-pod-vol-1   1/1       Running   0          42s       10.244.2.4   summit-student-0-worker-0
-helloworld-static-pod-vol-2   1/1       Running   0          28s       10.244.1.4   summit-student-0-worker-1
-nfs-server                    1/1       Running   0          8m        10.244.1.3   summit-student-0-worker-1
+helloworld-static-pod-vol-1   1/1       Running   0          42s       10.244.2.4   lab-kubernetes-0-worker-0
+helloworld-static-pod-vol-2   1/1       Running   0          28s       10.244.1.4   lab-kubernetes-0-worker-1
+nfs-server                    1/1       Running   0          8m        10.244.1.3   lab-kubernetes-0-worker-1
 ```
 
 Back in your browser, refresh the page several times. Notice the new Pods are now being used. The Service we previously deployed automatically picked up these new Pods, because they included the `app:helloworld` Label.

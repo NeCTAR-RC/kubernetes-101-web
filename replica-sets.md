@@ -122,9 +122,9 @@ kubectl get pods -o wide
 
 ```console
 NAME                          READY     STATUS    RESTARTS   AGE       IP           NODE
-helloworld-replicaset-955n4   1/1       Running   0          14s       10.244.1.8   summit-student-0-worker-1
-helloworld-replicaset-cnmp5   1/1       Running   0          14s       10.244.2.7   summit-student-0-worker-0
-nfs-server                    1/1       Running   0          43m       10.244.1.3   summit-student-0-worker-1
+helloworld-replicaset-955n4   1/1       Running   0          14s       10.244.1.8   lab-kubernetes-0-worker-1
+helloworld-replicaset-cnmp5   1/1       Running   0          14s       10.244.2.7   lab-kubernetes-0-worker-0
+nfs-server                    1/1       Running   0          43m       10.244.1.3   lab-kubernetes-0-worker-1
 ```
 
 Back in your browser, refresh the page several times. Notice the new ReplicaSet managed Pods are now being used.
@@ -197,12 +197,12 @@ kubectl get pods -o wide
 
 ```console
 NAME                          READY     STATUS    RESTARTS   AGE       IP           NODE
-helloworld-replicaset-5lz9d   1/1       Running   0          31s       10.244.2.8   summit-student-0-worker-0
-helloworld-replicaset-955n4   1/1       Running   0          5m        10.244.1.8   summit-student-0-worker-1
-helloworld-replicaset-9vk8h   1/1       Running   0          31s       10.244.1.9   summit-student-0-worker-1
-helloworld-replicaset-cnmp5   1/1       Running   0          5m        10.244.2.7   summit-student-0-worker-0
-helloworld-replicaset-h5k2z   1/1       Running   0          31s       10.244.2.9   summit-student-0-worker-0
-nfs-server                    1/1       Running   0          45m       10.244.1.3   summit-student-0-worker-1
+helloworld-replicaset-5lz9d   1/1       Running   0          31s       10.244.2.8   lab-kubernetes-0-worker-0
+helloworld-replicaset-955n4   1/1       Running   0          5m        10.244.1.8   lab-kubernetes-0-worker-1
+helloworld-replicaset-9vk8h   1/1       Running   0          31s       10.244.1.9   lab-kubernetes-0-worker-1
+helloworld-replicaset-cnmp5   1/1       Running   0          5m        10.244.2.7   lab-kubernetes-0-worker-0
+helloworld-replicaset-h5k2z   1/1       Running   0          31s       10.244.2.9   lab-kubernetes-0-worker-0
+nfs-server                    1/1       Running   0          45m       10.244.1.3   lab-kubernetes-0-worker-1
 ```
 
 The ReplicaSet created 3 new Pods, bringing the total up to 5. Since since the new Pods had a Label of `app:helloworld`, they were automatically added to the Service.
@@ -238,9 +238,9 @@ kubectl get pods -o wide
 
 ```console
 NAME                          READY     STATUS    RESTARTS   AGE       IP           NODE
-helloworld-replicaset-955n4   1/1       Running   0          7m        10.244.1.8   summit-student-0-worker-1
-helloworld-replicaset-cnmp5   1/1       Running   0          7m        10.244.2.7   summit-student-0-worker-0
-nfs-server                    1/1       Running   0          47m       10.244.1.3   summit-student-0-worker-1
+helloworld-replicaset-955n4   1/1       Running   0          7m        10.244.1.8   lab-kubernetes-0-worker-1
+helloworld-replicaset-cnmp5   1/1       Running   0          7m        10.244.2.7   lab-kubernetes-0-worker-0
+nfs-server                    1/1       Running   0          47m       10.244.1.3   lab-kubernetes-0-worker-1
 ```
 
 With ReplicaSets, scaling up and down is quite trivial. But what about rolling out an update to our application? Can we just update the Container Image version, and let the ReplicaSet handle the rest?

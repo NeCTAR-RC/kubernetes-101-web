@@ -72,7 +72,7 @@ kubectl get pods -o wide
 
 ```console
 NAME                      READY     STATUS    RESTARTS   AGE       IP           NODE
-helloworld-static-pod-1   1/1       Running   0          1m        10.244.1.2   summit-student-0-worker-1
+helloworld-static-pod-1   1/1       Running   0          1m        10.244.1.2   lab-kubernetes-0-worker-1
 ```
 
 And even more information by running `kubectl describe` on the Pod.
@@ -84,7 +84,7 @@ kubectl describe pod helloworld-static-pod-1
 ```console
 Name:         helloworld-static-pod-1
 Namespace:    default
-Node:         summit-student-0-worker-1/23.253.111.235
+Node:         lab-kubernetes-0-worker-1/23.253.111.235
 Start Time:   Mon, 14 May 2018 18:17:11 +0000
 Labels:       app=helloworld
 Annotations:  <none>
@@ -184,8 +184,8 @@ kubectl get pods -o wide
 
 ```console
 NAME                      READY     STATUS    RESTARTS   AGE       IP           NODE
-helloworld-static-pod-1   1/1       Running   0          12m       10.244.1.2   summit-student-0-worker-1
-helloworld-static-pod-2   1/1       Running   0          2m        10.244.2.2   summit-student-0-worker-0
+helloworld-static-pod-1   1/1       Running   0          12m       10.244.1.2   lab-kubernetes-0-worker-1
+helloworld-static-pod-2   1/1       Running   0          2m        10.244.2.2   lab-kubernetes-0-worker-0
 ```
 
 Again, it might take a few seconds for the Pod to start for the first time, as Kubernetes probably scheduled it on a different Worker Node, and the Image isn't cached on that Worker Node yet. The Pod will be ready to use when the Status shows as `Running`.
