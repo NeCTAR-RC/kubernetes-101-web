@@ -37,17 +37,17 @@ Looking at the Pods from Exercise 1, they were deployed with a label of `app:hel
 grep metadata -A 3 ~/lab/exercise-1/static-pod-*.yaml
 ```
 
-```console
-/root/exercise-1/static-pod-1.yaml:metadata:
-/root/exercise-1/static-pod-1.yaml-  name: helloworld-static-pod-1
-/root/exercise-1/static-pod-1.yaml-  labels:
-/root/exercise-1/static-pod-1.yaml-    app: helloworld
---
-/root/exercise-1/static-pod-2.yaml:metadata:
-/root/exercise-1/static-pod-2.yaml-  name: helloworld-static-pod-2
-/root/exercise-1/static-pod-2.yaml-  labels:
-/root/exercise-1/static-pod-2.yaml-    app: helloworld
-```
+<pre>
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">:</span><span style="color:red;font-weight:bold;">metadata</span>:
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">-</span>  name: helloworld-static-pod-1
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">-</span>  labels:
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">-</span>    app: helloworld
+<span style="color:teal;">--</span>
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">:</span><span style="color:red;font-weight:bold;">metadata</span>:
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">-</span>  name: helloworld-static-pod-2
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">-</span>  labels:
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">-</span>    app: helloworld
+</pre>
 
 Create your Service by running the following `kubectl` command:
 
@@ -163,7 +163,7 @@ We will use this IP address as the External IP address of our Service. The `serv
 colordiff -y service.yaml service-external.yaml
 ```
 
-```yaml
+<pre>
 apiVersion: v1                                                  apiVersion: v1
 kind: Service                                                   kind: Service
 metadata:                                                       metadata:
@@ -173,9 +173,9 @@ spec:                                                           spec:
     - port: 80                                                      - port: 80
   selector:                                                       selector:
     app: helloworld                                                 app: helloworld
-                                                              >   externalIPs:
-                                                              >     - 23.253.111.163
-```
+<span style="color:green;">                                                              &gt;   externalIPs:</span>
+<span style="color:green;">                                                              &gt;     - 23.253.111.163</span>
+</pre>
 
 And since we are updating our Service object, we just need to `kubectl apply` the updated Manifest file.
 

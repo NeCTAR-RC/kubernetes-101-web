@@ -56,38 +56,38 @@ We can see the `Kind` attribute is set to `ReplicaSet`, and there are some new a
 colordiff -yb ~/lab/exercise-3/static-pod-vol-1.yaml replicaset.yaml
 ```
 
-```yaml
-  apiVersion: v1                                                | apiVersion: apps/v1
-  kind: Pod                                                     | kind: ReplicaSet
-  metadata:                                                       metadata:
-    name: helloworld-static-pod-vol-1                           |   name: helloworld-replicaset
-    labels:                                                         labels:
-      app: helloworld                                                 app: helloworld
-  spec:                                                           spec:
-                                                                >   replicas: 2
-                                                                >   selector:
-                                                                >     matchLabels:
-                                                                >       app: helloworld
-                                                                >   template:
-                                                                >     metadata:
-                                                                >       labels:
-                                                                >         app: helloworld
-                                                                >     spec:
-    containers:                                                         containers:
-      - name: helloworld                                                  - name: helloworld
-        image: rackspacetraining/helloworld:1.0                             image: rackspacetraining/helloworld:1.0
-        ports:                                                              ports:
-          - name: web                                                         - name: web
-            containerPort: 80                                                   containerPort: 80
-        volumeMounts:                                                       volumeMounts:
-          - name: nfs                                                         - name: nfs
-            mountPath: "/mnt/images"                                            mountPath: "/mnt/images"
-    volumes:                                                            volumes:
-      - name: nfs                                                         - name: nfs
-        nfs:                                                                nfs:
-          server: nfs-server.default.svc.cluster.local                        server: nfs-server.default.svc.cluster.local
-          path: "/exports"                                                    path: "/exports"
-```
+<pre>
+<span style="color:teal;">apiVersion: v1                                                | apiVersion: apps/v1</span>
+<span style="color:teal;">kind: Pod                                                     | kind: ReplicaSet</span>
+metadata:                                                       metadata:
+<span style="color:teal;">  name: helloworld-static-pod-vol-1                           |   name: helloworld-replicaset</span>
+  labels:                                                         labels:
+    app: helloworld                                                 app: helloworld
+spec:                                                           spec:
+<span style="color:green;">                                                              &gt;   replicas: 2</span>
+<span style="color:green;">                                                              &gt;   selector:</span>
+<span style="color:green;">                                                              &gt;     matchLabels:</span>
+<span style="color:green;">                                                              &gt;       app: helloworld</span>
+<span style="color:green;">                                                              &gt;   template:</span>
+<span style="color:green;">                                                              &gt;     metadata:</span>
+<span style="color:green;">                                                              &gt;       labels:</span>
+<span style="color:green;">                                                              &gt;         app: helloworld</span>
+<span style="color:green;">                                                              &gt;     spec:</span>
+  containers:                                                         containers:
+    - name: helloworld                                                  - name: helloworld
+      image: rackspacetraining/helloworld:1.0                             image: rackspacetraining/helloworld:1.0
+      ports:                                                              ports:
+      - name: web                                                           - name: web
+        containerPort: 80                                                     containerPort: 80
+      volumeMounts:                                                       volumeMounts:
+        - name: nfs                                                         - name: nfs
+          mountPath: &quot;/mnt/images&quot;                                            mountPath: &quot;/mnt/images&quot;
+  volumes:                                                            volumes:
+    - name: nfs                                                         - name: nfs
+      nfs:                                                                nfs:
+        server: nfs-server.default.svc.cluster.local                        server: nfs-server.default.svc.cluster.local
+        path: &quot;/exports&quot;                                                    path: &quot;/exports&quot;
+</pre>
 
 The ReplicaSet Spec consists of a few key attributes. The `Replicas` attribute defines the desired number of Pods that should exist. The `Selector` attribute is how the ReplicaSet determines how many Pods currently exist by matching on the `app:helloworld` Label. And finally, we can see the Pod Spec becomes the `Template` the ReplicaSet uses to deploy new Pods.
 
@@ -135,7 +135,7 @@ Now let's see how simple it is to scale up our ReplicaSet. By diffing a modified
 colordiff -y replicaset.yaml replicaset-scale.yaml
 ```
 
-```yaml
+<pre>
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:
@@ -143,7 +143,7 @@ metadata:                                                       metadata:
   labels:                                                         labels:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
-  replicas: 2                                                 |   replicas: 5
+<span style="color:teal;">  replicas: 2                                                 |   replicas: 5</span>
   selector:                                                       selector:
     matchLabels:                                                    matchLabels:
       app: helloworld                                                 app: helloworld
@@ -160,13 +160,13 @@ spec:                                                           spec:
               containerPort: 80                                               containerPort: 80
           volumeMounts:                                                   volumeMounts:
             - name: nfs                                                     - name: nfs
-              mountPath: "/mnt/images"                                        mountPath: "/mnt/images"
+              mountPath: &quot;/mnt/images&quot;                                        mountPath: &quot;/mnt/images&quot;
       volumes:                                                        volumes:
         - name: nfs                                                     - name: nfs
           nfs:                                                            nfs:
             server: nfs-server.default.svc.cluster.local                    server: nfs-server.default.svc.cluster.local
-            path: "/exports"                                                path: "/exports"
-```
+            path: &quot;/exports&quot;                                                path: &quot;/exports&quot;
+</pre>
 
 Since we are updating our ReplicaSet object, we just need to `kubectl apply` the updated Manifest file.
 
@@ -251,7 +251,7 @@ Only one way to find out. So let's diff the `replicaset.yaml` and `replicaset-up
 colordiff -y replicaset.yaml replicaset-update.yaml
 ```
 
-```yaml
+<pre>
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:
@@ -270,19 +270,19 @@ spec:                                                           spec:
     spec:                                                           spec:
       containers:                                                     containers:
         - name: helloworld                                              - name: helloworld
-          image: rackspacetraining/helloworld:1.0             |           image: rackspacetraining/helloworld:1.1
+<span style="color:teal;">          image: rackspacetraining/helloworld:1.0             |           image: rackspacetraining/helloworld:1.1</span>
           ports:                                                          ports:
             - name: web                                                     - name: web
               containerPort: 80                                               containerPort: 80
           volumeMounts:                                                   volumeMounts:
             - name: nfs                                                     - name: nfs
-              mountPath: "/mnt/images"                                        mountPath: "/mnt/images"
+              mountPath: &quot;/mnt/images&quot;                                        mountPath: &quot;/mnt/images&quot;
       volumes:                                                        volumes:
         - name: nfs                                                     - name: nfs
           nfs:                                                            nfs:
             server: nfs-server.default.svc.cluster.local                    server: nfs-server.default.svc.cluster.local
-            path: "/exports"                                                path: "/exports"
-```
+            path: &quot;/exports&quot;                                                path: &quot;/exports&quot;
+</pre>
 
 We can see, the only difference is the Container Image has been updated to `HelloWorld 1.1`. The main difference between these versions of the Container Image relates to the version of PHP being used.
 
@@ -333,7 +333,7 @@ And this actually makes sense. If you recall how ReplicaSets work, they count th
 colordiff -y replicaset-update.yaml replicaset-update-scale.yaml
 ```
 
-```yaml
+<pre>
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: ReplicaSet                                                kind: ReplicaSet
 metadata:                                                       metadata:
@@ -341,7 +341,7 @@ metadata:                                                       metadata:
   labels:                                                         labels:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
-  replicas: 2                                                 |   replicas: 5
+<span style="color:teal;">  replicas: 2                                                 |   replicas: 5</span>
   selector:                                                       selector:
     matchLabels:                                                    matchLabels:
       app: helloworld                                                 app: helloworld
@@ -358,13 +358,13 @@ spec:                                                           spec:
               containerPort: 80                                               containerPort: 80
           volumeMounts:                                                   volumeMounts:
             - name: nfs                                                     - name: nfs
-              mountPath: "/mnt/images"                                        mountPath: "/mnt/images"
+              mountPath: &quot;/mnt/images&quot;                                        mountPath: &quot;/mnt/images&quot;
       volumes:                                                        volumes:
         - name: nfs                                                     - name: nfs
           nfs:                                                            nfs:
             server: nfs-server.default.svc.cluster.local                    server: nfs-server.default.svc.cluster.local
-            path: "/exports"                                                path: "/exports"
-```
+            path: &quot;/exports&quot;                                                path: &quot;/exports&quot;
+</pre>
 
 Let's update our ReplicaSet object, changing the number of Replicas to `5`.
 

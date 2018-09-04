@@ -54,29 +54,29 @@ Comparing the Manifest file we previously deployed, to an modified version that 
 colordiff -y ~/lab/exercise-1/static-pod-1.yaml static-pod-vol-1.yaml
 ```
 
-```yaml
+<pre>
 apiVersion: v1                                                  apiVersion: v1
 kind: Pod                                                       kind: Pod
 metadata:                                                       metadata:
-  name: helloworld-static-pod-1                               |   name: helloworld-static-pod-vol-1
+<span style="color:teal;">  name: helloworld-static-pod-1                               |   name: helloworld-static-pod-vol-1</span>
   labels:                                                         labels:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
   containers:                                                     containers:
-    - name: helloworld                                              - name: helloworld
-      image: rackspacetraining/helloworld:1.0                         image: rackspacetraining/helloworld:1.0
-      ports:                                                          ports:
-        - name: web                                                     - name: web
-          containerPort: 80                                               containerPort: 80
-                                                              >       volumeMounts:
-                                                              >         - name: nfs
-                                                              >           mountPath: "/mnt/images"
-                                                              >   volumes:
-                                                              >     - name: nfs
-                                                              >       nfs:
-                                                              >         server: nfs-server.default.svc.cluster.local
-                                                              >         path: "/exports"
-```
+<span style="color:teal;">  - name: helloworld                                          |   - name: hellworld</span>
+    image: rackspacetraining/helloworld:1.0                         image: rackspacetraining/helloworld:1.0
+    ports:                                                          ports:
+    - name: web                                                     - name: web
+      containerPort: 80                                               containerPort: 80
+<span style="color:green;">                                                              &gt;     volumeMounts:</span>
+<span style="color:green;">                                                              &gt;       - name: my-nfs</span>
+<span style="color:green;">                                                              &gt;         mountPath: &quot;/mnt/images&quot;</span>
+<span style="color:green;">                                                              &gt;   volumes:</span>
+<span style="color:green;">                                                              &gt;     - name: my-nfs</span>
+<span style="color:green;">                                                              &gt;       nfs:</span>
+<span style="color:green;">                                                              &gt;         server: nfs-server.default.svc.cluster.local</span>
+<span style="color:green;">                                                              &gt;         path: &quot;/exports&quot;</span>
+</pre>
 
 Under the `Spec` section, a new `Volumes` attribute has been added. This is where we define any Volumes we need within the Pod. And you can see the type we are creating is an `NFS Volume`. Then inside the `Containers` section, a `VolumeMounts` attribute controls which Volumes gets mounted where within the Container.
 

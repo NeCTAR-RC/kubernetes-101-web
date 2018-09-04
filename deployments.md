@@ -17,11 +17,11 @@ Let's compare the `replicaset.yaml` Manifest file from Exercise 4 to the `deploy
 colordiff -yb ~/lab/exercise-4/replicaset.yaml deployment.yaml
 ```
 
-```yaml
+<pre>
 apiVersion: apps/v1                                             apiVersion: apps/v1
-kind: ReplicaSet                                              | kind: Deployment
+<span style="color:teal;">kind: ReplicaSet                                              | kind: Deployment</span>
 metadata:                                                       metadata:
-  name: helloworld-replicaset                                 |   name: helloworld-deployment
+<span style="color:teal;">  name: helloworld-replicaset                                 |   name: helloworld-deployment</span>
   labels:                                                         labels:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
@@ -42,13 +42,13 @@ spec:                                                           spec:
               containerPort: 80                                               containerPort: 80
           volumeMounts:                                                   volumeMounts:
             - name: nfs                                                     - name: nfs
-              mountPath: "/mnt/images"                                        mountPath: "/mnt/images"
+              mountPath: &quot;/mnt/images&quot;                                        mountPath: &quot;/mnt/images&quot;
       volumes:                                                        volumes:
         - name: nfs                                                     - name: nfs
           nfs:                                                            nfs:
             server: nfs-server.default.svc.cluster.local                    server: nfs-server.default.svc.cluster.local
-            path: "/exports"                                                path: "/exports"
-```
+            path: &quot;/exports&quot;                                                path: &quot;/exports&quot;
+</pre>
 
 As you can see, the only real difference is the `Kind` attribute being set to `Deployment`.
 
@@ -105,7 +105,7 @@ Let's try scaling up our Deployment to 10 replicas.
 colordiff -y deployment.yaml deployment-scale.yaml
 ```
 
-```yaml
+<pre>
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: Deployment                                                kind: Deployment
 metadata:                                                       metadata:
@@ -113,7 +113,7 @@ metadata:                                                       metadata:
   labels:                                                         labels:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
-  replicas: 2                                                 |   replicas: 10
+<span style="color:teal;">  replicas: 2                                                 |   replicas: 10</span>
   selector:                                                       selector:
     matchLabels:                                                    matchLabels:
       app: helloworld                                                 app: helloworld
@@ -130,13 +130,13 @@ spec:                                                           spec:
               containerPort: 80                                               containerPort: 80
           volumeMounts:                                                   volumeMounts:
             - name: nfs                                                     - name: nfs
-              mountPath: "/mnt/images"                                        mountPath: "/mnt/images"
+              mountPath: &quot;/mnt/images&quot;                                        mountPath: &quot;/mnt/images&quot;
       volumes:                                                        volumes:
         - name: nfs                                                     - name: nfs
           nfs:                                                            nfs:
             server: nfs-server.default.svc.cluster.local                    server: nfs-server.default.svc.cluster.local
-            path: "/exports"                                                path: "/exports"
-```
+            path: &quot;/exports&quot;                                                path: &quot;/exports&quot;
+</pre>
 
 Since we are updating our Deployment object, we just need to `kubectl apply` the updated Manifest file. Again, notice we are using the `--record option`. More on this in a bit.
 
@@ -201,7 +201,7 @@ So let's try rolling out an update using our Deployment. Diffing a modified Mani
 colordiff -y deployment-scale.yaml deployment-update.yaml
 ```
 
-```yaml
+<pre>
 apiVersion: apps/v1                                             apiVersion: apps/v1
 kind: Deployment                                                kind: Deployment
 metadata:                                                       metadata:
@@ -220,19 +220,19 @@ spec:                                                           spec:
     spec:                                                           spec:
       containers:                                                     containers:
         - name: helloworld                                              - name: helloworld
-          image: rackspacetraining/helloworld:1.0             |           image: rackspacetraining/helloworld:1.1
+<span style="color:teal;">          image: rackspacetraining/helloworld:1.0             |           image: rackspacetraining/helloworld:1.1</span>
           ports:                                                          ports:
             - name: web                                                     - name: web
               containerPort: 80                                               containerPort: 80
           volumeMounts:                                                   volumeMounts:
             - name: nfs                                                     - name: nfs
-              mountPath: "/mnt/images"                                        mountPath: "/mnt/images"
+              mountPath: &quot;/mnt/images&quot;                                        mountPath: &quot;/mnt/images&quot;
       volumes:                                                        volumes:
         - name: nfs                                                     - name: nfs
           nfs:                                                            nfs:
             server: nfs-server.default.svc.cluster.local                    server: nfs-server.default.svc.cluster.local
-            path: "/exports"                                                path: "/exports"
-```
+            path: &quot;/exports&quot;                                                path: &quot;/exports&quot;
+</pre>
 
 Since we are updating our Deployment object, we just need to `kubectl apply` the updated Manifest file.
 
