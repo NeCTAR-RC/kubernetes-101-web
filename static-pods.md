@@ -159,11 +159,11 @@ metadata:                                                       metadata:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
   containers:                                                     containers:
-  - name: helloworld                                              - name: helloworld
-    image: rackspacetraining/helloworld:1.0                         image: rackspacetraining/helloworld:1.0
-    ports:                                                          ports:
-    - name: web                                                     - name: web
-      containerPort: 80                                               containerPort: 80
+    - name: helloworld                                              - name: helloworld
+      image: rackspacetraining/helloworld:1.0                         image: rackspacetraining/helloworld:1.0
+      ports:                                                          ports:
+        - name: web                                                     - name: web
+          containerPort: 80                                               containerPort: 80
 </pre>
 
 Create your second Pod by running the following `kubectl` command:
@@ -235,6 +235,6 @@ http --body $STATIC_POD_2_IP | head -n 25
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 ```
 
-And it works...great job!
+And it works... great job!
 
 But now we have a new problem. How do we distribute requests between these two Pods?

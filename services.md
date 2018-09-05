@@ -134,13 +134,13 @@ X-Powered-By: PHP/5.6.36
 In the response headers, we've included an `X-Forwarded-To` header, which indicates which Pod serviced the request. Running the command a few more times should show load balancing between the Pods.
 
 ```
-http --print=Hh $SERVICE_CLUSTER_IP | grep X-Forwarded-To
-http --print=Hh $SERVICE_CLUSTER_IP | grep X-Forwarded-To
-http --print=Hh $SERVICE_CLUSTER_IP | grep X-Forwarded-To
+for i in {1..5}; do http --print=Hh $SERVICE_CLUSTER_IP | grep X-Forwarded-To; done
 ```
 
 ```console
+X-Forwarded-To: helloworld-static-pod-1
 X-Forwarded-To: helloworld-static-pod-2
+X-Forwarded-To: helloworld-static-pod-1
 X-Forwarded-To: helloworld-static-pod-1
 X-Forwarded-To: helloworld-static-pod-2
 ```

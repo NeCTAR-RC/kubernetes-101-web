@@ -22,7 +22,7 @@ ECDSA key fingerprint is SHA256:V9uiWfD7AiO3OzmYqbbu2g/pmrc9FLzgxGOhInZjTYg.
 Are you sure you want to continue connecting (yes/no)?
 ```
 
-Type `yes`, and press enter to continue.
+Type `yes`, and press `enter` to continue.
 
 ```
 yes

@@ -63,11 +63,11 @@ metadata:                                                       metadata:
     app: helloworld                                                 app: helloworld
 spec:                                                           spec:
   containers:                                                     containers:
-  - name: helloworld                                                - name: helloworld
-    image: rackspacetraining/helloworld:1.0                           image: rackspacetraining/helloworld:1.0
-    ports:                                                            ports:
-    - name: web                                                       - name: web
-      containerPort: 80                                                 containerPort: 80
+    - name: helloworld                                              - name: helloworld
+      image: rackspacetraining/helloworld:1.0                         image: rackspacetraining/helloworld:1.0
+      ports:                                                          ports:
+        - name: web                                                     - name: web
+          containerPort: 80                                               containerPort: 80
 <span style="color:green;">                                                              &gt;       volumeMounts:</span>
 <span style="color:green;">                                                              &gt;         - name: nfs</span>
 <span style="color:green;">                                                              &gt;           mountPath: &quot;/mnt/images&quot;</span>
@@ -124,3 +124,24 @@ nfs-server                    1/1       Running   0          8m        10.244.1.
 Back in your browser, refresh the page several times. Notice the new Pods are now being used. The Service we previously deployed automatically picked up these new Pods, because they included the `app:helloworld` Label.
 
 Now click "Hello World", and choose an image to upload as the background image (gif, jpg, or png). Refresh the page several times, and notice that the image always loads, no matter which Pod services the request.
+
+Before moving on to the next Exercise, let's clean up these Pods, deleting them with the following `kubectl delete` command:
+
+```
+kubectl delete -f static-pod-vol-1.yaml -f static-pod-vol-2.yaml
+```
+
+```console
+pod "helloworld-static-pod-vol-1" deleted
+pod "helloworld-static-pod-vol-2" deleted
+```
+
+And after a few seconds, we can confirm that the Pods have indeed been deleted.
+
+```
+kubectl get pods -o wide
+```
+
+```console
+No resources found.
+```
