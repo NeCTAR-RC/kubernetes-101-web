@@ -10,10 +10,10 @@ order: 00
 This workshop is designed to be completed entirely from the command line. To access your lab environment, you will need an SSH client. Linux and macOS systems should have an SSH client already installed, accessible from your terminal. Windows systems might need to download an SSH client, such as PuTTY, if one is not already installed.
 
 ### Linux and macOS
-Initate an SSH connection to your Master Node, using the root user and password provided for your lab environment.
+Initate an SSH connection to your Master Node, using the ubuntu user and password provided for your lab environment.
 
 ```
-ssh root@<your-master-node-ip-address>
+ssh ubuntu@<your-master-node-ip-address>
 ```
 
 ```console
@@ -30,7 +30,7 @@ yes
 
 ```console
 Warning: Permanently added '23.253.111.163' (ECDSA) to the list of known hosts.
-root@23.253.111.163's password: 
+ubuntu@23.253.111.163's password:
 ```
 
 Type in your password, then press `enter` to continue.
@@ -38,12 +38,12 @@ Type in your password, then press `enter` to continue.
 ```console
 Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-119-generic x86_64)
 
-root@lab-kubernetes-0-master:~#
+ubuntu@lab-kubernetes-0-master:~#
 ```
 
 ### Windows PuTTY
 
-Windows systems using PuTTY, enter your Master Node IP Address. Ensure the Connection Type is set to SSH, and the Port is set to 22, then click `Open`. Follow the prompts to accept the connection. Login using the root user and password provided for your lab environment.
+Windows systems using PuTTY, enter your Master Node IP Address. Ensure the Connection Type is set to SSH, and the Port is set to 22, then click `Open`. Follow the prompts to accept the connection. Login using the ubuntu user and password provided for your lab environment.
 
 
 ## Kubernetes Nodes
