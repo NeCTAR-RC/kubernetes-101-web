@@ -26,11 +26,11 @@ metadata:
     app: helloworld
 spec:
   containers:
-  - name: helloworld
-    image: rackspacetraining/helloworld:1.0
-    ports:
-    - name: web
-      containerPort: 80
+    - name: helloworld
+      image: rackspacetraining/helloworld:1.0
+      ports:
+        - name: web
+          containerPort: 80
 ```
 
 The first thing to note is the `Kind` attribute, which declares the kind of object this is. Here, we are deploying a `Pod`, which is the smallest deployable unit in Kubernetes.
@@ -84,8 +84,8 @@ kubectl describe pod helloworld-static-pod-1
 ```console
 Name:         helloworld-static-pod-1
 Namespace:    default
-Node:         lab-kubernetes-0-worker-1/23.253.111.235
-Start Time:   Mon, 14 May 2018 18:17:11 +0000
+Node:         lab-kubernetes-01-worker-1/45.113.234.56
+Start Time:   Thu, 06 Sep 2018 04:16:54 +0000
 Labels:       app=helloworld
 Annotations:  <none>
 Status:       Running
@@ -98,7 +98,7 @@ The sample output above had been trimmed, as there is too much to display it all
 Using either the `-o wide` or `kubectl describe` commands, we can see our Pod has an IP address assigned to it. Let's get that IP address, and save it to an environment variable, so we can refer to it later.
 
 ```
-STATIC_POD_1_IP=`kubectl get pods -o wide | awk '/helloworld-static-pod-1/ { print $6 }'`
+STATIC_POD_1_IP=$(kubectl get pods -o wide | awk '/helloworld-static-pod-1/{print $6}')
 echo $STATIC_POD_1_IP
 ```
 
@@ -193,7 +193,7 @@ Again, it might take a few seconds for the Pod to start for the first time, as K
 Let's get the IP address of the second Pod, and save it to an environment variable.
 
 ```
-STATIC_POD_2_IP=`kubectl get pods -o wide | awk '/helloworld-static-pod-2/ { print $6 }'`
+STATIC_POD_2_IP=$(kubectl get pods -o wide | awk '/helloworld-static-pod-2/{print $6}')
 echo $STATIC_POD_2_IP
 ```
 

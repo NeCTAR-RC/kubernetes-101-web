@@ -38,12 +38,12 @@ grep metadata -A 3 ~/lab/exercise-1/static-pod-*.yaml
 ```
 
 <pre>
-<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">:</span><span style="color:red;font-weight:bold;">metadata</span>:
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">:</span><span style="color:red;">metadata</span>:
 <span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">-</span>  name: helloworld-static-pod-1
 <span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">-</span>  labels:
 <span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-1.yaml</span><span style="color:teal;">-</span>    app: helloworld
 <span style="color:teal;">--</span>
-<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">:</span><span style="color:red;font-weight:bold;">metadata</span>:
+<span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">:</span><span style="color:red;">metadata</span>:
 <span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">-</span>  name: helloworld-static-pod-2
 <span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">-</span>  labels:
 <span style="color:pink;">/home/ubuntu/lab/exercise-1/static-pod-2.yaml</span><span style="color:teal;">-</span>    app: helloworld
@@ -67,7 +67,7 @@ kubectl get service -o wide
 
 ```console
 NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE       SELECTOR
-helloworld-service   ClusterIP   10.110.223.163   <none>        80/TCP    18s       app=helloworld
+helloworld-service   ClusterIP   10.105.78.81     <none>        80/TCP    18s       app=helloworld
 kubernetes           ClusterIP   10.96.0.1        <none>        443/TCP   46m       <none>
 ```
 
@@ -86,7 +86,7 @@ Labels:            <none>
 Annotations:       kubectl.kubernetes.io/last-applied-configuration=...
 Selector:          app=helloworld
 Type:              ClusterIP
-IP:                10.110.223.163
+IP:                10.105.78.81
 Port:              <unset>  80/TCP
 TargetPort:        80/TCP
 Endpoints:         10.244.1.2:80,10.244.2.2:80
@@ -97,7 +97,7 @@ Events:            <none>
 Let's get the Service IP address, and save it to an environment variable.
 
 ```
-SERVICE_CLUSTER_IP=`kubectl get service -o wide | awk '/helloworld-service/ { print $3 }'`
+SERVICE_CLUSTER_IP=$(kubectl get service -o wide | awk '/helloworld-service/{print $3}')
 echo $SERVICE_CLUSTER_IP
 ```
 
@@ -154,7 +154,7 @@ ifdata -pa eth0
 ```
 
 ```console
-23.253.111.163
+45.113.232.96
 ```
 
 We will use this IP address as the External IP address of our Service. The `service-external.yaml` Manifest file has been updated to include the `externalIps` attribute. You can see these changes by running the following command:
@@ -174,7 +174,7 @@ spec:                                                           spec:
   selector:                                                       selector:
     app: helloworld                                                 app: helloworld
 <span style="color:green;">                                                              &gt;   externalIPs:</span>
-<span style="color:green;">                                                              &gt;     - 23.253.111.163</span>
+<span style="color:green;">                                                              &gt;     - 45.113.232.96</span>
 </pre>
 
 And since we are updating our Service object, we just need to `kubectl apply` the updated Manifest file.
@@ -194,20 +194,20 @@ kubectl get service -o wide
 ```
 
 ```console
-NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP      PORT(S)   AGE       SELECTOR
-helloworld-service   ClusterIP   10.110.223.163   23.253.111.163   80/TCP    2m        app=helloworld
-kubernetes           ClusterIP   10.96.0.1        <none>           443/TCP   49m       <none>
+NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP     PORT(S)   AGE       SELECTOR
+helloworld-service   ClusterIP   10.105.78.81   45.113.232.96   80/TCP    2m        app=helloworld
+kubernetes           ClusterIP   10.96.0.1      <none>          443/TCP   21h       <none>
 ```
 
 And we can see that the External IP address has been configure for the Service. Let's get the External IP address, and save it to an environment variable.
 
 ```
-SERVICE_EXTERNAL_IP=`kubectl get service -o wide | awk '/helloworld-service/ { print $4 }'`
+SERVICE_EXTERNAL_IP=$(kubectl get service -o wide | awk '/helloworld-service/{print $4}')
 echo $SERVICE_EXTERNAL_IP
 ```
 
 ```console
-23.253.111.163
+45.113.232.96
 ```
 
 And then we can test that the External IP is working as expected.
@@ -221,18 +221,18 @@ GET / HTTP/1.1
 Accept: */*
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
-Host: 23.253.111.163
+Host: 45.113.232.96
 User-Agent: HTTPie/0.9.2
 
 HTTP/1.1 200 OK
 Connection: close
 Content-Encoding: gzip
-Content-Length: 1764
+Content-Length: 1762
 Content-Type: text/html; charset=UTF-8
-Date: Mon, 14 May 2018 18:59:21 GMT
+Date: Thu, 06 Sep 2018 04:24:39 GMT
 Server: Apache/2.4.10 (Debian)
 Vary: Accept-Encoding
-X-Forwarded-To: helloworld-static-pod-1
+X-Forwarded-To: helloworld-static-pod-2
 X-Powered-By: PHP/5.6.36
 ```
 
@@ -243,7 +243,7 @@ echo "Open URL In Browser: http://$SERVICE_EXTERNAL_IP/"
 ```
 
 ```console
-Open URL In Browser: http://23.253.111.163/
+Open URL In Browser: http://45.113.232.96/
 ```
 
 Refresh the page several times. The Service should be load balancing between the Pods.
