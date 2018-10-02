@@ -3,10 +3,10 @@ title: Kubernetes 101
 email: support@nectar.org.au
 description: Kubernetes 101
 
-baseurl: "/kubernetes-101"
-url: https://andybotting.github.io/kubernetes-101
-git_address: https://github.com/andybotting/kubernetes-101
-git_edit_address: https://github.com/andybotting/kubernetes-101/blob/gh-pages
+baseurl: ""
+url: https://nectar-rc.github.io/kubernetes-101
+git_address: https://github.com/NeCTAR-RC/kubernetes-101
+git_edit_address: https://github.com/NeCTAR-RC/kubernetes-101/blob/gh-pages
 
 # Build settings
 markdown: kramdown
