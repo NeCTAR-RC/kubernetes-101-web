@@ -50,7 +50,7 @@ Windows systems using PuTTY, enter your Master Node IP Address. Ensure the Conne
 
 Kubernetes Nodes are systems that are part of a Kubernetes Cluster. There are two types of Nodes in your Cluster today: Master Node & Worker Node. The Master Node is where many Kubernetes Components run that make the Cluster work. The Worker Node is where user workloads run.
 
-## Kubeclt
+## Kubectl
 
 The command line tool used to interact with Kubernetes is known as `kubectl`. It looks for your Kubernetes credentials in `~/.kube/config` by default, which have already been setup for you.
 
